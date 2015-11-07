@@ -10,7 +10,7 @@
     "test:nyan": "node test/runner.js | tnyan",
     "coverage": "istanbul cover test/runner.js",
     "lint": "eslint **/*.js *.js",
-    "open": "open http://localhost:8000"
+    "open": "open http://localhost:8888"
   },
   "author": "node-girls",
   "license": "ISC",
