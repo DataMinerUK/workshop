@@ -7,14 +7,15 @@
 
 var http = require('http');
 var fs = require('fs');
+var nodeStatic = require('node-static');
 var port = 8888;
+var fileServer = new nodeStatic.Server('./public');
 
-function handler(request,response) {
-  var url = request.url;
-  if (url === "/") {
-      response.writeHead(200, {"Content-type": "text/html"});
-      response.end("<h1>Hello World!</h1>");
-  }
-}
-
-http.createServer(handler).listen(port);
+http.createServer(function (request, response) {
+  request.addListener('end', function () {
+      //
+      // Serve files!
+      //
+      fileServer.serve(request, response);
+  }).resume();
+}).listen(port);
